@@ -157,7 +157,8 @@ else
   echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
   echo "You are installing for version 16.04 or later (using systemd for services)."
   echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-  read -e -p "Is this correct [y/n] " -i "$DEFAULTYESNO" useupstart
+  #read -e -p "Is this correct [y/n] " -i "$DEFAULTYESNO" useupstart
+  useupstart=y
   if [ "$useupstart" = "n" ]; then
     export ISON1604=n
   fi
@@ -313,13 +314,16 @@ if [ "$installtomcat" = "y" ]; then
   echo "This information will be added to default configuration files."
   echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
   read -e -p "Please enter the public host name for Share server (fully qualified domain name)${ques} [`hostname`] " -i "`hostname`" SHARE_HOSTNAME
-  read -e -p "Please enter the protocol to use for public Share server (http or https)${ques} [http] " -i "http" SHARE_PROTOCOL
+  #read -e -p "Please enter the protocol to use for public Share server (http or https)${ques} [http] " -i "http" SHARE_PROTOCOL
+  SHARE_PROTOCOL=https
   SHARE_PORT=80
   if [ "${SHARE_PROTOCOL,,}" = "https" ]; then
     SHARE_PORT=443
   fi
-  read -e -p "Please enter the host name for Alfresco Repository server (fully qualified domain name) as shown to users${ques} [$SHARE_HOSTNAME] " -i "$SHARE_HOSTNAME" REPO_HOSTNAME
-  read -e -p "Please enter the host name for Alfresco Repository server that Share will use to talk to repository${ques} [localhost] " -i "localhost" SHARE_TO_REPO_HOSTNAME
+  #read -e -p "Please enter the host name for Alfresco Repository server (fully qualified domain name) as shown to users${ques} [$SHARE_HOSTNAME] " -i "$SHARE_HOSTNAME" REPO_HOSTNAME
+  REPO_HOSTNAME=localhost
+  #read -e -p "Please enter the host name for Alfresco Repository server that Share will use to talk to repository${ques} [localhost] " -i "localhost" SHARE_TO_REPO_HOSTNAME
+  SHARE_TO_REPO_HOSTNAME=localhost
   # Add default alfresco-global.propertis
   ALFRESCO_GLOBAL_PROPERTIES=/tmp/alfrescoinstall/alfresco-global.properties
   sudo curl  -c 5 -# -o $ALFRESCO_GLOBAL_PROPERTIES $BASE_DOWNLOAD/tomcat/alfresco-global.properties
@@ -472,6 +476,8 @@ if [ "$installibreoffice" = "y" ]; then
   echo
   echoblue "Installing some support fonts for better transformations."
   # libxinerama1 libglu1-mesa needed to get LibreOffice 4.4 to work. Add the libraries that Alfresco mention in documentatinas required.
+
+#ttf-mscorefonts-installer, ok, eula yes
 
   ###1604 fonts-droid not available, use fonts-noto instead
   sudo apt-get $APTVERBOSITY install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
@@ -875,5 +881,8 @@ echogreen "You are welcome to contact us at info@loftux.se"
 echo "${warn}${bldblu} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ${warn}"
 echo
 
+
+sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfresco-ubuntu-install/raw/master/scripts/postgresql.sh
+sudo chmod +x /opt/alfresco/scripts/postgresql.sh
 sudo /opt/alfresco/scripts/postgresql.sh
 
