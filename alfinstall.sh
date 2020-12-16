@@ -30,7 +30,8 @@ export JDBCPOSTGRES=postgresql-42.2.5.jar
 export JDBCMYSQLURL=https://dev.mysql.com/get/Downloads/Connector-J
 export JDBCMYSQL=mysql-connector-java-5.1.47.tar.gz
 
-export LIBREOFFICE=https://download.documentfoundation.org/libreoffice/stable/6.4.0/deb/x86_64/LibreOffice_6.4.0_Linux_x86-64_deb.tar.gz
+export LIBREOFFICE=https://download.documentfoundation.org/libreoffice/stable/6.4.7/deb/x86_64/LibreOffice_6.4.7_Linux_x86-64_deb.tar.gz
+#export LIBREOFFICE=https://download.documentfoundation.org/libreoffice/stable/6.4.0/deb/x86_64/LibreOffice_6.4.0_Linux_x86-64_deb.tar.gz
 export ALFRESCO_PDF_RENDERER=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/alfresco-pdf-renderer/1.1/alfresco-pdf-renderer-1.1-linux.tgz
 
 export ALFREPOWAR=https://downloads.loftux.net/public/content/org/alfresco/content-services-community/6.1.1/content-services-community-6.1.1.war
@@ -109,7 +110,8 @@ echogreen "Please visit https://loftux.com/alfresco for more information."
 echogreen "You are welcome to contact us at info@loftux.se"
 echo "${warn}${bldblu} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ${warn}"
 echo
-read -e -p "Use LXCommunity ECM when installing${ques} [y/n] " -i "$DEFAULTYESNO" uselxcommunity
+#read -e -p "Use LXCommunity ECM when installing${ques} [y/n] " -i "$DEFAULTYESNO" uselxcommunity
+uselxcommunity=y
 if [ "$uselxcommunity" = "y" ]; then
 
   ALFREPOWAR=$LXALFREPOWAR
@@ -204,7 +206,8 @@ echo
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 echo "You need to add a system user that runs the tomcat Alfresco instance."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Add alfresco system user${ques} [y/n] " -i "$DEFAULTYESNO" addalfresco
+#read -e -p "Add alfresco system user${ques} [y/n] " -i "$DEFAULTYESNO" addalfresco
+addalfresco=y
 if [ "$addalfresco" = "y" ]; then
   sudo adduser --system --disabled-login --disabled-password --group $ALF_USER
   echo
@@ -221,7 +224,8 @@ echo "You need to set the locale to use when running tomcat Alfresco instance."
 echo "This has an effect on date formats for transformations and support for"
 echo "international characters."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Enter the default locale to use: " -i "$LOCALESUPPORT" LOCALESUPPORT
+#read -e -p "Enter the default locale to use: " -i "$LOCALESUPPORT" LOCALESUPPORT
+LOCALESUPPORT=es_CR.utf8
 #install locale to support that locale date formats in open office transformations
 sudo locale-gen $LOCALESUPPORT
 echo
@@ -235,7 +239,8 @@ echo "for alfresco use and tomcat may because of this stop with the error"
 echo "\"too many open files\". You should update this value if you have not done so."
 echo "Read more at http://wiki.alfresco.com/wiki/Too_many_open_files"
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Add limits.conf${ques} [y/n] " -i "$DEFAULTYESNO" updatelimits
+#read -e -p "Add limits.conf${ques} [y/n] " -i "$DEFAULTYESNO" updatelimits
+updatelimits=y
 if [ "$updatelimits" = "y" ]; then
   echo "alfresco  soft  nofile  8192" | sudo tee -a /etc/security/limits.conf
   echo "alfresco  hard  nofile  65536" | sudo tee -a /etc/security/limits.conf
@@ -258,7 +263,8 @@ echo "Tomcat is the application server that runs Alfresco."
 echo "You will also get the option to install jdbc lib for Postgresql or MySql/MariaDB."
 echo "Install the jdbc lib for the database you intend to use."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install Tomcat${ques} [y/n] " -i "$DEFAULTYESNO" installtomcat
+#read -e -p "Install Tomcat${ques} [y/n] " -i "$DEFAULTYESNO" installtomcat
+installtomcat=y
 
 if [ "$installtomcat" = "y" ]; then
   echogreen "Installing Tomcat"
@@ -320,7 +326,8 @@ if [ "$installtomcat" = "y" ]; then
   sed -i "s/@@ALFRESCO_REPO_SERVER@@/$REPO_HOSTNAME/g" $ALFRESCO_GLOBAL_PROPERTIES
   sudo mv $ALFRESCO_GLOBAL_PROPERTIES $CATALINA_HOME/shared/classes/
 
-  read -e -p "Install Share config file (recommended)${ques} [y/n] " -i "$DEFAULTYESNO" installshareconfig
+  #read -e -p "Install Share config file (recommended)${ques} [y/n] " -i "$DEFAULTYESNO" installshareconfig
+  installshareconfig=y
   if [ "$installshareconfig" = "y" ]; then
     SHARE_CONFIG_CUSTOM=/tmp/alfrescoinstall/share-config-custom.xml
     sudo curl -# -o $SHARE_CONFIG_CUSTOM $BASE_DOWNLOAD/tomcat/share-config-custom.xml
@@ -330,13 +337,15 @@ if [ "$installtomcat" = "y" ]; then
   fi
 
   echo
-  read -e -p "Install Postgres JDBC Connector${ques} [y/n] " -i "$DEFAULTYESNO" installpg
+  #read -e -p "Install Postgres JDBC Connector${ques} [y/n] " -i "$DEFAULTYESNO" installpg
+  installpg=y
   if [ "$installpg" = "y" ]; then
 	curl -# -O $JDBCPOSTGRESURL/$JDBCPOSTGRES
 	sudo mv $JDBCPOSTGRES $CATALINA_HOME/lib
   fi
   echo
-  read -e -p "Install Mysql JDBC Connector${ques} [y/n] " -i "$DEFAULTYESNO" installmy
+  #read -e -p "Install Mysql JDBC Connector${ques} [y/n] " -i "$DEFAULTYESNO" installmy
+  installmy=n
   if [ "$installmy" = "y" ]; then
     cd /tmp/alfrescoinstall
 	curl -# -L -O $JDBCMYSQLURL/$JDBCMYSQL
@@ -362,7 +371,8 @@ echo "You can run Alfresco fine without installing nginx."
 echo "If you prefer to use Apache, install that manually. Or you can use iptables"
 echo "forwarding, sample script in $ALF_HOME/scripts/iptables.sh"
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install nginx${ques} [y/n] " -i "$DEFAULTYESNO" installnginx
+#read -e -p "Install nginx${ques} [y/n] " -i "$DEFAULTYESNO" installnginx
+installnginx=y
 if [ "$installnginx" = "y" ]; then
   echoblue "Installing nginx. Fetching packages..."
   echo
@@ -411,7 +421,8 @@ echo "Install Java JDK."
 echo "This will install OpenJDK 8 version of Java. If you prefer Oracle Java 8 "
 echo "you need to download and install that manually."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install OpenJDK${ques} [y/n] " -i "$DEFAULTYESNO" installjdk
+#read -e -p "Install OpenJDK${ques} [y/n] " -i "$DEFAULTYESNO" installjdk
+installjdk=y
 if [ "$installjdk" = "y" ]; then
   echoblue "Installing OpenJDK..."
   sudo apt-get $APTVERBOSITY install openjdk-8-jre-headless
@@ -442,7 +453,8 @@ echo "Newer version of Libreoffice has better document filters, and produce bett
 echo "transformations. If you prefer to use Ubuntu standard packages you can skip"
 echo "this install."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install LibreOffice${ques} [y/n] " -i "$DEFAULTYESNO" installibreoffice
+#read -e -p "Install LibreOffice${ques} [y/n] " -i "$DEFAULTYESNO" installibreoffice
+installibreoffice=y
 if [ "$installibreoffice" = "y" ]; then
 
   cd /tmp/alfrescoinstall
@@ -478,7 +490,8 @@ echo "This will ImageMagick from Ubuntu packages."
 echo "It is recommended that you install ImageMagick."
 echo "If you prefer some other way of installing ImageMagick, skip this step."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install ImageMagick${ques} [y/n] " -i "$DEFAULTYESNO" installimagemagick
+#read -e -p "Install ImageMagick${ques} [y/n] " -i "$DEFAULTYESNO" installimagemagick
+installimagemagick=y
 if [ "$installimagemagick" = "y" ]; then
 
   echoblue "Installing ImageMagick. Fetching packages..."
@@ -596,7 +609,8 @@ echo
 echo "This install place downloaded files in the $ALF_HOME/addons and then use the"
 echo "apply.sh script to add them to tomcat/webapps. Se this script for more info."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Add Alfresco Repository war file${ques} [y/n] " -i "$DEFAULTYESNO" installwar
+#read -e -p "Add Alfresco Repository war file${ques} [y/n] " -i "$DEFAULTYESNO" installwar
+installwar=y
 if [ "$installwar" = "y" ]; then
 
   echogreen "Downloading alfresco war file..."
@@ -614,7 +628,8 @@ else
   echo
 fi
 
-read -e -p "Add Share Client war file${ques} [y/n] " -i "$DEFAULTYESNO" installsharewar
+#read -e -p "Add Share Client war file${ques} [y/n] " -i "$DEFAULTYESNO" installsharewar
+installsharewar=y
 if [ "$installsharewar" = "y" ]; then
 
   echogreen "Downloading Share war file..."
@@ -637,7 +652,8 @@ cd /tmp/alfrescoinstall
 
 if [ "$installwar" = "y" ]; then
     echored "You must install Share Services if you intend to use Share Client."
-    read -e -p "Add Share Services plugin${ques} [y/n] " -i "$DEFAULTYESNO" installshareservices
+    #read -e -p "Add Share Services plugin${ques} [y/n] " -i "$DEFAULTYESNO" installshareservices
+    installshareservices=y
     if [ "$installshareservices" = "y" ]; then
       echo "Downloading Share Services addon..."
       curl -# -O $ALFSHARESERVICES
@@ -645,7 +661,8 @@ if [ "$installwar" = "y" ]; then
     fi
 fi
 
-read -e -p "Add Google docs integration${ques} [y/n] " -i "$DEFAULTYESNO" installgoogledocs
+#read -e -p "Add Google docs integration${ques} [y/n] " -i "$DEFAULTYESNO" installgoogledocs
+installgoogledocs=y
 if [ "$installgoogledocs" = "y" ]; then
   echo "Downloading Google docs addon..."
   if [ "$installwar" = "y" ]; then
@@ -666,7 +683,8 @@ echo "Install Alfresco Office Services (Sharepoint protocol emulation)."
 echo "This allows you to open and save Microsoft Office documents online."
 echored "This module is not Open Source (Alfresco proprietary)."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install Alfresco Office Services integration${ques} [y/n] " -i "$DEFAULTYESNO" installssharepoint
+#read -e -p "Install Alfresco Office Services integration${ques} [y/n] " -i "$DEFAULTYESNO" installssharepoint
+installssharepoint=y
 if [ "$installssharepoint" = "y" ]; then
     echogreen "Installing Alfresco Offices Services bundle..."
     echogreen "Downloading Alfresco Office Services amp file"
@@ -703,7 +721,8 @@ echored "Alfresco Serch Services will be installed without SSL!"
 echored "Configure firewall to block port 8983 or install ssl, see"
 echored "https://docs.alfresco.com/community/tasks/solr6-install.html"
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install Solr6 indexing engine${ques} [y/n] " -i "$DEFAULTYESNO" installsolr
+#read -e -p "Install Solr6 indexing engine${ques} [y/n] " -i "$DEFAULTYESNO" installsolr
+installsolr=y
 if [ "$installsolr" = "y" ]; then
 
   # Make sure we have unzip available
@@ -746,7 +765,8 @@ echo "tool based on Duplicity for Alfresco backups and restore from a local file
 echo "FTP, SCP or Amazon S3 of all its components: indexes, data base, content store "
 echo "and all deployment and configuration files."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-read -e -p "Install B.A.R.T${ques} [y/n] " -i "$DEFAULTYESNO" installbart
+#read -e -p "Install B.A.R.T${ques} [y/n] " -i "$DEFAULTYESNO" installbart
+installbart=y
 
 if [ "$installbart" = "y" ]; then
  echogreen "Installing B.A.R.T"
