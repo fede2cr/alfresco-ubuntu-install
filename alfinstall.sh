@@ -33,14 +33,14 @@ export JDBCMYSQL=mysql-connector-java-5.1.47.tar.gz
 export LIBREOFFICE=https://download.documentfoundation.org/libreoffice/stable/6.4.7/deb/x86_64/LibreOffice_6.4.7_Linux_x86-64_deb.tar.gz
 export ALFRESCO_PDF_RENDERER=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/alfresco-pdf-renderer/1.1/alfresco-pdf-renderer-1.1-linux.tgz
 
-#export ALFREPOWAR=https://downloads.loftux.net/public/content/org/alfresco/content-services-community/6.1.1/content-services-community-6.1.1.war
-#export ALFSHAREWAR=https://downloads.loftux.net/public/content/org/alfresco/share/6.1.0/share-6.1.0.war
-#export ALFSHARESERVICES=https://downloads.loftux.net/public/content/org/alfresco/alfresco-share-services/6.1.0/alfresco-share-services-6.1.0.amp
-#export ALFMMTJAR=https://downloads.loftux.net/public/content/org/alfresco/alfresco-mmt/6.0/alfresco-mmt-6.0.jar
-export ALFREPOWAR=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/content-services-community/6.2.1-A8/content-services-community-6.2.1-A8.war
-export ALFSHAREWAR=https://artifacts.alfresco.com/nexus/content/repositories/releases/org/alfresco/share/6.2.1-A3/share-6.2.1-A3.war
-export ALFSHARESERVICES=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/alfresco-share-services/6.2.1/alfresco-share-services-6.2.1.amp
+export ALFREPOWAR=https://downloads.loftux.net/public/content/org/alfresco/content-services-community/6.1.1/content-services-community-6.1.1.war
+export ALFSHAREWAR=https://downloads.loftux.net/public/content/org/alfresco/share/6.1.0/share-6.1.0.war
+export ALFSHARESERVICES=https://downloads.loftux.net/public/content/org/alfresco/alfresco-share-services/6.1.0/alfresco-share-services-6.1.0.amp
 export ALFMMTJAR=https://downloads.loftux.net/public/content/org/alfresco/alfresco-mmt/6.0/alfresco-mmt-6.0.jar
+#export ALFREPOWAR=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/content-services-community/6.2.1-A8/content-services-community-6.2.1-A8.war
+#export ALFSHAREWAR=https://artifacts.alfresco.com/nexus/content/repositories/releases/org/alfresco/share/6.2.1-A3/share-6.2.1-A3.war
+#export ALFSHARESERVICES=https://artifacts.alfresco.com/nexus/service/local/repositories/releases/content/org/alfresco/alfresco-share-services/6.2.1/alfresco-share-services-6.2.1.amp
+#export ALFMMTJAR=https://downloads.loftux.net/public/content/org/alfresco/alfresco-mmt/6.0/alfresco-mmt-6.0.jar
 
 export ASS_DOWNLOAD=https://downloads.loftux.net/public/content/org/alfresco/alfresco-search-services/1.3.0.1/alfresco-search-services-1.3.0.1.zip
 
@@ -699,6 +699,8 @@ if [ "$installssharepoint" = "y" ]; then
     sudo curl -c 5  -# -o $ALF_HOME/tomcat/webapps/ROOT.war $AOS_SERVER_ROOT
 fi
 
+sudo apt install -y netstat
+
 # Install of war and addons complete, apply them to war file
 if [ "$installwar" = "y" ] || [ "$installsharewar" = "y" ] || [ "$installssharepoint" = "y" ]; then
     # Check if Java is installed before trying to apply
@@ -872,3 +874,6 @@ echogreen "Please visit https://loftux.com for more Alfresco Services and add-on
 echogreen "You are welcome to contact us at info@loftux.se"
 echo "${warn}${bldblu} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ${warn}"
 echo
+
+sudo /opt/alfresco/scripts/postgresql.sh
+
