@@ -886,6 +886,6 @@ sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfr
 sudo chmod +x /opt/alfresco/scripts/postgresql.sh
 sudo /opt/alfresco/scripts/postgresql.sh
 
-sudo wget -O /opt/alfresco/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
-sudo chown alfresco:alfresco /opt/alfresco/shared/classes/alfresco-global.properties
+sudo wget -O /opt/alfresco/tomcat/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
+sudo chown alfresco:alfresco /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
