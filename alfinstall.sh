@@ -307,13 +307,14 @@ if [ "$installtomcat" = "y" ]; then
   # Add endorsed dir
   sudo mkdir -p $CATALINA_HOME/endorsed
 
-  echo
-  echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-  echo "You need to add the dns name, port and protocol for your server(s)."
-  echo "It is important that this is is a resolvable server name."
-  echo "This information will be added to default configuration files."
-  echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-  read -e -p "Please enter the public host name for Share server (fully qualified domain name)${ques} [`hostname`] " -i "`hostname`" SHARE_HOSTNAME
+  #echo
+  #echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+  #echo "You need to add the dns name, port and protocol for your server(s)."
+  #echo "It is important that this is is a resolvable server name."
+  #echo "This information will be added to default configuration files."
+  #echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+  #read -e -p "Please enter the public host name for Share server (fully qualified domain name)${ques} [`hostname`] " -i "`hostname`" SHARE_HOSTNAME
+  SHARE_HOSTNAME=localhost
   #read -e -p "Please enter the protocol to use for public Share server (http or https)${ques} [http] " -i "http" SHARE_PROTOCOL
   SHARE_PROTOCOL=https
   SHARE_PORT=80
