@@ -893,7 +893,7 @@ sudo wget -O /opt/alfresco/tomcat/shared/classes/alfresco-global.properties http
 sudo chown alfresco:alfresco /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 sudo mkdir -p -m 2755 /opt/alfresco/alf_data/solr6/{content,models,index,solrhome}
-sudo chown alfresco:alfresco /opt/alfresco/alf_data/solr/
+sudo chown alfresco:alfresco /opt/alfresco/alf_data/solr6/
 sudo mkdir -p -m 2755 /opt/alfresco/logs/solr6
 sudo cp -r /opt/alfresco/solr6/solrhome /opt/alfresco/alf_data/solr6
 sudo chown alfresco:alfresco /opt/alfresco/logs/solr6
