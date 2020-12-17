@@ -43,7 +43,7 @@ fi
 createdb=y
 if [ "$createdb" = "y" ]; then
   sudo -u postgres psql -U postgres postgres << DBCREATE
-CREATE USER 'alfresco' WITH PASSWORD 'alfresco';
+CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 DBCREATE
