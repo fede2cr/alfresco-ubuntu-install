@@ -1,0 +1,29 @@
+name: Build CI
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  check_suite:
+    type: [rerequested]
+
+jobs:
+  alf-install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
+    - name: Alfresco install
+      run: ./alfinstall.sh
+    - name: Install Pause
+      run: sleep 3m
+    - name: Basic web tests
+      run: |
+        wget -O - --no-check-certificate http://localhost/alfresco
+        wget -O - --no-check-certificate http://localhost/share
+        wget -O - --no-check-certificate https://localhost/alfresco
+        wget -O - --no-check-certificate https://localhost/share
+        #python3 test/alf_test.py
+

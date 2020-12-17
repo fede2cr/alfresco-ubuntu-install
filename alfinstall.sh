@@ -482,7 +482,7 @@ if [ "$installibreoffice" = "y" ]; then
   ###1604 fonts-droid not available, use fonts-noto instead
   #sudo apt-get $APTVERBOSITY install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
   echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-  sudo apt-get DEBIAN_FRONTEND=noninteractive -y install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
+  DEBIAN_FRONTEND=noninteractive sudo apt-get -y install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
   echo
   echogreen "Finished installing LibreOffice"
   echo
