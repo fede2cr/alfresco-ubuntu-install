@@ -705,7 +705,7 @@ if [ "$installssharepoint" = "y" ]; then
     sudo curl -c 5  -# -o $ALF_HOME/tomcat/webapps/ROOT.war $AOS_SERVER_ROOT
 fi
 
-sudo apt install -y netstat
+sudo apt install -y net-tools
 
 # Install of war and addons complete, apply them to war file
 if [ "$installwar" = "y" ] || [ "$installsharewar" = "y" ] || [ "$installssharepoint" = "y" ]; then
@@ -885,4 +885,7 @@ echo
 sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfresco-ubuntu-install/raw/master/scripts/postgresql.sh
 sudo chmod +x /opt/alfresco/scripts/postgresql.sh
 sudo /opt/alfresco/scripts/postgresql.sh
+
+sudo wget -O /opt/alfresco/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
+sudo chown alfresco:alfresco /opt/alfresco/shared/classes/alfresco-global.properties
 
