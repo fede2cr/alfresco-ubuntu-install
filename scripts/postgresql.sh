@@ -51,8 +51,8 @@ fi
 
 cat << EOF | sudo tee /etc/postgresql/9.6/main/pg_hba.conf
 local all postgres peer
-local all alfresco password
-host all all 127.0.0.1/32 password
+local all alfresco trust
+host all all 127.0.0.1/32 trust
 EOF
 
 sudo service postresql restart
