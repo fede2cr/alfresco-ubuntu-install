@@ -58,7 +58,7 @@ host all all 127.0.0.1/32 trust
 local all postgres peer
 EOF
 
-sudo service postresql restart
+sudo service postgresql restart
 sudo service nginx start
 sudo /opt/alfresco/alfresco-service.sh servicestart
 
