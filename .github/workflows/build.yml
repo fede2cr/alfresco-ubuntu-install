@@ -18,7 +18,7 @@ jobs:
     - name: Alfresco install
       run: ./alfinstall.sh
     - name: Install Pause
-      run: sleep 3m
+      run: sleep 5m
     - name: Basic web tests
       run: |
         wget -O - --no-check-certificate http://localhost/alfresco
