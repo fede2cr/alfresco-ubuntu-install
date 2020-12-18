@@ -395,7 +395,7 @@ sudo -s << EOF
   #echo "deb http://ppa.launchpad.net/brianmercer/nginx/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
   #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8D0DC64F
 EOF
-  sudo apt-get $APTVERBOSITY update && sudo apt-get $APTVERBOSITY install nginx
+  sudo apt-get $APTVERBOSITY update && sudo apt-get $APTVERBOSITY install nginx-full
   sudo service nginx stop
   sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
   sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.sample
