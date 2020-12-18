@@ -17,7 +17,7 @@ export DEFAULTYESNO="y"
 
 # Branch name to pull from server. Use master for stable.
 BRANCH=master
-export BASE_DOWNLOAD=https://raw.githubusercontent.com/loftuxab/alfresco-ubuntu-install/$BRANCH
+export BASE_DOWNLOAD=https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/$BRANCH
 export KEYSTOREBASE=https://svn.alfresco.com/repos/alfresco-open-mirror/alfresco/HEAD/root/projects/repository/config/alfresco/keystore
 
 #Change this to prefered locale to make sure it exists. This has impact on LibreOffice transformations
@@ -885,15 +885,15 @@ echo "${warn}${bldblu} - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 echo
 
 
-sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfresco-ubuntu-install/raw/master/scripts/postgresql.sh
-sudo chmod +x /opt/alfresco/scripts/postgresql.sh
+#sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfresco-ubuntu-install/raw/master/scripts/postgresql.sh
+#sudo chmod +x /opt/alfresco/scripts/postgresql.sh
 sudo /opt/alfresco/scripts/postgresql.sh
 
-sudo wget -O /opt/alfresco/tomcat/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
-sudo chown alfresco:alfresco /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+#sudo wget -O /opt/alfresco/tomcat/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
+#sudo chown alfresco:alfresco /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 sudo mkdir -p -m 2755 /opt/alfresco/alf_data/solr6/{content,models,index,solrhome}
-sudo chown alfresco:alfresco /opt/alfresco/alf_data/solr6/
+sudo chown -R alfresco:alfresco /opt/alfresco/alf_data/solr6/
 sudo mkdir -p -m 2755 /opt/alfresco/logs/solr6
 sudo cp -r /opt/alfresco/solr6/solrhome /opt/alfresco/alf_data/solr6
 sudo chown alfresco:alfresco /opt/alfresco/logs/solr6
