@@ -22,8 +22,8 @@ jobs:
     - name: Basic web tests
       run: |
         #wget -O - --no-check-certificate http://localhost/alfresco
-        wget -O - --no-check-certificate http://localhost/share
+        wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
-        wget -O - --no-check-certificate https://localhost/share
+        #wget -O - --no-check-certificate https://localhost/share
         #python3 test/alf_test.py
 
