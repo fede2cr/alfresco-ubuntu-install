@@ -403,8 +403,7 @@ EOF
   #sudo curl -c 5  -# -o /etc/nginx/conf.d/alfresco.conf $BASE_DOWNLOAD/nginx/alfresco.conf
   #sudo curl -c 5  -# -o /etc/nginx/conf.d/alfresco.conf.ssl $BASE_DOWNLOAD/nginx/alfresco.conf.ssl 
   #sudo curl -c 5  -# -o /etc/nginx/conf.d/basic-settings.conf $BASE_DOWNLOAD/nginx/basic-settings.conf
-  sudo curl -c 5 /etc/nginx/sites-available/default $BASE_DOWNLOAD/nginx/default
-  ( cd /etc/nginx/sites-enabled ; sudo ln -s ../sites-available/default . )
+  sudo curl -c 5 /etc/nginx/conf.d/alfresco.conf $BASE_DOWNLOAD/nginx/default
   sudo mkdir -p /var/cache/nginx/alfresco
   # Make the ssl dir as this is what is used in sample config
   sudo mkdir -p /etc/nginx/ssl
