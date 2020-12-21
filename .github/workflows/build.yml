@@ -22,6 +22,7 @@ jobs:
     - name: Basic web tests
       run: |
         #wget -O - --no-check-certificate http://localhost/alfresco
+        ps faxww
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
