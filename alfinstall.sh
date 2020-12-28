@@ -886,16 +886,13 @@ echo "${warn}${bldblu} - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 echo
 
 
-#sudo wget -O /opt/alfresco/scripts/postgresql.sh https://github.com/fede2cr/alfresco-ubuntu-install/raw/master/scripts/postgresql.sh
-#sudo chmod +x /opt/alfresco/scripts/postgresql.sh
 sudo /opt/alfresco/scripts/postgresql.sh
-
-#sudo wget -O /opt/alfresco/tomcat/shared/classes/alfresco-global.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/tomcat/alfresco-global.properties
-#sudo chown alfresco:alfresco /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 sudo mkdir -p -m 2755 /opt/alfresco/alf_data/solr6/{content,models,index,solrhome}
 sudo chown -R alfresco:alfresco /opt/alfresco/alf_data/solr6/
 sudo mkdir -p -m 2755 /opt/alfresco/logs/solr6
 sudo cp -r /opt/alfresco/solr6/solrhome /opt/alfresco/alf_data/solr6
 sudo chown alfresco:alfresco /opt/alfresco/logs/solr6
+sudo nohub /opt/alfresco/alfresco-service.sh servicestart
 sudo -u alfresco /opt/alfresco/solr6/solr/bin/solr start
+
