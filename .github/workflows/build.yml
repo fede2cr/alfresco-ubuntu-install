@@ -15,10 +15,12 @@ jobs:
     - uses: actions/checkout@v2.2.0
       with:
         fetch-depth: 0
+    - name: Github CI uninstall
+      run: sudo apt-get purge -y php*
     - name: Alfresco install
       run: ./alfinstall.sh
     - name: Install Pause
-      run: sleep 15m
+      run: sleep 5m
     - name: Basic web tests
       run: |
         #wget -O - --no-check-certificate http://localhost/alfresco
