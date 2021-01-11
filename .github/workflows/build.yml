@@ -26,6 +26,7 @@ jobs:
         #wget -O - --no-check-certificate http://localhost/alfresco
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
+        java -vesion
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
