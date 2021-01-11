@@ -24,6 +24,7 @@ jobs:
     - name: Basic web tests
       run: |
         #wget -O - --no-check-certificate http://localhost/alfresco
+        dpkg -l|grep openjdk
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
         java -vesion
