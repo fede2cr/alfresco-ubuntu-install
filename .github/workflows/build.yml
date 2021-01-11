@@ -18,7 +18,9 @@ jobs:
     - name: Github CI uninstall
       run: sudo apt-get purge -y php* openjdk* adoptopenjdk*
     - name: Alfresco install
-      run: ./alfinstall.sh
+      run: |
+        unset JAVA_HOME
+        ./alfinstall.sh
     - name: Install Pause
       run: sleep 5m
     - name: Basic web tests
