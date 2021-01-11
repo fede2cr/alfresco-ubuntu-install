@@ -24,6 +24,7 @@ jobs:
       run: sudo apt-get purge -y php*  adoptopenjdk-8-hotspot
     - name: Alfresco install
       run: |
+        update-java-alternatives -l
         sudo update-java-alternatives -s adoptopenjdk-11-hotspot-amd64
         export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
         sudo ./alfinstall.sh
