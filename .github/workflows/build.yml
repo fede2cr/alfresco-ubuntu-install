@@ -23,7 +23,6 @@ jobs:
     - name: Github CI uninstall
       run: |
         sudo apt-get purge -y php*  adoptopenjdk-8-hotspot
-        sudo rm -rv /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
         sudo ln -s /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64 /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
     - name: Alfresco install
       run: |
