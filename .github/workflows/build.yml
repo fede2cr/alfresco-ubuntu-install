@@ -19,9 +19,8 @@ jobs:
       run: sudo apt-get purge -y php* #openjdk* adoptopenjdk* zulu-*
     - name: Alfresco install
       run: |
-        unset JAVA_HOME
         update-java-alternatives -l
-        sudo apt-get install -y openjdk-11-jre
+        update-java-alternatives -s adoptopenjdk-11-hotspot-amd64
         ./alfinstall.sh
     - name: Install Pause
       run: sleep 5m
