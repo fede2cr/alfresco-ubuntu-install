@@ -12,22 +12,47 @@ jobs:
   alf-install:
     runs-on: ubuntu-latest
     steps:
+    - name: Setup JDK 11
+      id: setup-java-11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
     - uses: actions/checkout@v2.2.0
       with:
         fetch-depth: 0
     - name: Github CI uninstall
-      run: sudo apt-get purge -y php*
+      run: |
+        sudo apt-get purge -y php*  adoptopenjdk-8-hotspot
+        sudo ln -s /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64 /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
+        sudo update-java-alternatives -s adoptopenjdk-11-hotspot-amd64
     - name: Alfresco install
-      run: ./alfinstall.sh
+      run: |
+        ./alfinstall.sh
     - name: Install Pause
-      run: sleep 5m
+      run: sleep 4m
     - name: Basic web tests
       run: |
-        #wget -O - --no-check-certificate http://localhost/alfresco
+        java -version
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
+        #wget -O - --no-check-certificate http://localhost/alfresco
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
         #python3 test/alf_test.py
 
+    - name: Upgrade script
+      run: |
+        sudo ./scripts/upgrade/upgrade-to-6.2.0GA.sh
+    - name: Install Pause
+      run: sleep 2m
+    - name: Basic web tests
+      run: |
+        java -version
+        ps faxww
+        cat /opt/alfresco/tomcat/logs/*
+        #wget -O - --no-check-certificate http://localhost/alfresco
+        wget -O - --no-check-certificate http://localhost:8080/share
+        #wget -O - --no-check-certificate https://localhost/alfresco
+        #wget -O - --no-check-certificate https://localhost/share
+        #python3 test/alf_test.py

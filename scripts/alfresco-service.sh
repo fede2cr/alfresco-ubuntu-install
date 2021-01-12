@@ -24,7 +24,7 @@ JAVA_OPTS="-Xms1G -Xmx2G -Xss1024k"
 
 JAVA_OPTS="${JAVA_OPTS} -XX:+UseG1GC -XX:+UseStringDeduplication"
 
-JAVA_OPTS="${JAVA_OPTS} -Duser.country=US -Duser.region=US -Duser.language=en -Duser.timezone=\"Europe/Stockholm\" -d64"
+#JAVA_OPTS="${JAVA_OPTS} -Duser.country=US -Duser.region=US -Duser.language=en -Duser.timezone=\"Europe/Stockholm\" -d64"
 # Enable this if you encounter problems with transformations of certain pdfs. Side effect is disable of remote debugging
 # JAVA_OPTS="${JAVA_OPTS}  -Djava.awt.headless=true"
 
