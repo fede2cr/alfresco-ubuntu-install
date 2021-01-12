@@ -6,8 +6,8 @@
 # Distributed under the Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)
 # -------
 
-export LC_ALL=@@LOCALESUPPORT@@
-#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre
+export LC_ALL=es_CR.utf8@LOCALESUPPORT@@
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 export ALF_HOME=/opt/alfresco
 export CATALINA_HOME=/opt/alfresco/tomcat
