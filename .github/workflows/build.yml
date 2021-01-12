@@ -35,7 +35,7 @@ jobs:
         java -version
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
-        wget -O - --no-check-certificate http://localhost/alfresco
+        #wget -O - --no-check-certificate http://localhost/alfresco
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
@@ -51,7 +51,7 @@ jobs:
         java -version
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
-        wget -O - --no-check-certificate http://localhost/alfresco
+        #wget -O - --no-check-certificate http://localhost/alfresco
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
