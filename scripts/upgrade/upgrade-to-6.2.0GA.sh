@@ -65,6 +65,7 @@ if [ "$installjdk" = "y" ]; then
   sudo apt-get $APTVERBOSITY install openjdk-11-jre-headless
   sudo curl -c 5  -# -o $ALF_HOME/alfresco-service.sh $BASE_DOWNLOAD/scripts/alfresco-service.sh
   sudo update-alternatives --config java
+  sudo rmdir $CATALINA_HOME/endorsed
 fi
 
 installwar=y
