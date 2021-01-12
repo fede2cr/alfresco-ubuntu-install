@@ -24,23 +24,35 @@ jobs:
       run: |
         sudo apt-get purge -y php*  adoptopenjdk-8-hotspot
         sudo ln -s /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64 /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
+        sudo update-java-alternatives -s adoptopenjdk-11-hotspot-amd64
     - name: Alfresco install
       run: |
-        #update-java-alternatives -l
-        sudo update-java-alternatives -s adoptopenjdk-11-hotspot-amd64
-        export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
         ./alfinstall.sh
     - name: Install Pause
-      run: sleep 5m
+      run: sleep 4m
     - name: Basic web tests
       run: |
-        #wget -O - --no-check-certificate http://localhost/alfresco
-        dpkg -l|grep openjdk
+        java -version
         ps faxww
         cat /opt/alfresco/tomcat/logs/*
-        java -version
+        wget -O - --no-check-certificate http://localhost/alfresco
         wget -O - --no-check-certificate http://localhost:8080/share
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
         #python3 test/alf_test.py
 
+    - name: Upgrade script
+      run: |
+        sudo ./scripts/upgrade/upgrade-to-6.2.0GA.sh
+    - name: Install Pause
+      run: sleep 2m
+    - name: Basic web tests
+      run: |
+        java -version
+        ps faxww
+        cat /opt/alfresco/tomcat/logs/*
+        wget -O - --no-check-certificate http://localhost/alfresco
+        wget -O - --no-check-certificate http://localhost:8080/share
+        #wget -O - --no-check-certificate https://localhost/alfresco
+        #wget -O - --no-check-certificate https://localhost/share
+        #python3 test/alf_test.py
