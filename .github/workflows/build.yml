@@ -41,23 +41,25 @@ jobs:
         #wget -O - --no-check-certificate https://localhost/share
         #python3 test/alf_test.py
 
-    - name: Upgrade script
-      run: |
-        sudo ./scripts/upgrade/upgrade-to-6.2.0GA.sh
-    - name: Install Pause
-      run: sleep 2m
-    - name: Basic web tests
-      run: |
-        java -version
-        ps faxww
-        cat /opt/alfresco/tomcat/logs/*
-        #wget -O - --no-check-certificate http://localhost/alfresco
-        wget -O - --no-check-certificate http://localhost:8080/share
-        #wget -O - --no-check-certificate https://localhost/alfresco
-        #wget -O - --no-check-certificate https://localhost/share
-        #python3 test/alf_test.py
+#    - name: Upgrade script
+#      run: |
+#        sudo ./scripts/upgrade/upgrade-to-6.2.0GA.sh
+#    - name: Upgrade Pause
+#      run: sleep 2m
+#    - name: Basic web tests post upgrade
+#      run: |
+#        java -version
+#        ps faxww
+#        cat /opt/alfresco/tomcat/logs/*
+#        #wget -O - --no-check-certificate http://localhost/alfresco
+#        wget -O - --no-check-certificate http://localhost:8080/share
+#        #wget -O - --no-check-certificate https://localhost/alfresco
+#        #wget -O - --no-check-certificate https://localhost/share
+#        #python3 test/alf_test.py
     - name: Alflytics install
       run: ./alflytics.sh
+    - name: Alflytics Pause
+      run: sleep 2m
     - name: Basic web tests for Alflytics
       run: |
         java -version
