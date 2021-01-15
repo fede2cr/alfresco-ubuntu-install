@@ -56,3 +56,11 @@ jobs:
         #wget -O - --no-check-certificate https://localhost/alfresco
         #wget -O - --no-check-certificate https://localhost/share
         #python3 test/alf_test.py
+    - name: Alflytics install
+      run: ./alflytics.sh
+    - name: Basic web tests for Alflytics
+      run: |
+        java -version
+        ps faxww
+        wget -O - --no-check-certificate http://localhost:7080/
+
