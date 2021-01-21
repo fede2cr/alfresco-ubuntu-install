@@ -64,5 +64,5 @@ jobs:
       run: |
         java -version
         ps faxww
-        wget -O - --no-check-certificate http://localhost:7080/
+        wget -O - --no-check-certificate http://localhost:8080/
 

@@ -52,6 +52,7 @@ stop(){
 servicestart() {
     export JAVA_OPTS
     $CATALINA_HOME/bin/startup.sh
+    sudo service cron start
 }
 
 servicestop(){
