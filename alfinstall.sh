@@ -16,8 +16,8 @@ export TMP_INSTALL=/tmp/alfrescoinstall
 export DEFAULTYESNO="y"
 
 # Branch name to pull from server. Use master for stable.
-#BRANCH=master
-BRANCH=6.2.0GA
+BRANCH=master
+#BRANCH=6.2.0GA
 export BASE_DOWNLOAD=https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/$BRANCH
 export KEYSTOREBASE=https://svn.alfresco.com/repos/alfresco-open-mirror/alfresco/HEAD/root/projects/repository/config/alfresco/keystore
 
