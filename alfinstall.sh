@@ -17,7 +17,6 @@ export DEFAULTYESNO="y"
 
 # Branch name to pull from server. Use master for stable.
 BRANCH=master
-#BRANCH=6.2.0GA
 export BASE_DOWNLOAD=https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/$BRANCH
 export KEYSTOREBASE=https://svn.alfresco.com/repos/alfresco-open-mirror/alfresco/HEAD/root/projects/repository/config/alfresco/keystore
 
@@ -479,7 +478,7 @@ if [ "$installibreoffice" = "y" ]; then
   ###1604 fonts-droid not available, use fonts-noto instead
   #sudo apt-get $APTVERBOSITY install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
   echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-  DEBIAN_FRONTEND=noninteractive sudo apt-get -y install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
+  DEBIAN_FRONTEND=noninteractive sudo apt-get $APTVERBOSITY install ttf-mscorefonts-installer fonts-noto fontconfig libcups2 libfontconfig1 libglu1-mesa libice6 libsm6 libxinerama1 libxrender1 libxt6 libcairo2
   echo
   echogreen "Finished installing LibreOffice"
   echo
