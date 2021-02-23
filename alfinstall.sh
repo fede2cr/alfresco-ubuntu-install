@@ -776,7 +776,7 @@ echo "FTP, SCP or Amazon S3 of all its components: indexes, data base, content s
 echo "and all deployment and configuration files."
 echoblue "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 #read -e -p "Install B.A.R.T${ques} [y/n] " -i "$DEFAULTYESNO" installbart
-installbart=y
+installbart=n
 
 if [ "$installbart" = "y" ]; then
  echogreen "Installing B.A.R.T"
