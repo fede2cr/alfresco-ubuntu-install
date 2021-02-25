@@ -17,4 +17,8 @@ SHELL=/usr/bin/bash
 
 # Limpiamos respaldos todos los días
 30 9 * * * postgres /usr/bin/rm /mnt/e/alfresco_pgsql/*.sql.gz
+
+# Copiamos config de Alfresco una vez por día
+0 9 * * * root cp /opt/alfresco/tomcat/shared/classes/alfresco-global.properties /mnt/e/alfresco_pgsql/
+
 EOF
