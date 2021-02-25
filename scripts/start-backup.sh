@@ -1,13 +1,17 @@
 #!/bin/bash
 
+if [ ! -d /mnt/e/alfresco_pgsql ]
+then
+    sudo mkdir -p /mnt/e/alfresco_pgsql
+fi
+
+
 # Crea archivo de cron
-echo EOF | sudo tee /etc/cron.d/bart
-0 1 * * * alfresco /opt/alfresco/scripts/bart/alfresco-bart.sh backup all
+echo EOF | sudo tee /etc/cron.d/pg_dump
+50 9,12,15,20 * * * postgres /usr/bin/pg_dump -Fc -U postgres alfresco -f /mnt/e/alfresco_pgsql/respaldo-bd-$(date +%F-%s).sql.gz 2>&1 > /dev/null
+
+
+30 9 * * * postgres /usr/bin/rm /mnt/e/alfresco_pgsql/*.sql.gz
+
 EOF
-
-# Descarga archivo de bart
-sudo wget -O /opt/alfresco/scripts/bart/alfresco-bart.properties https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/scripts/alfresco-bart.properties
-
-# Agrega start de cron en service
-sudo wget -O /opt/alfresco/alfresco-service.sh https://raw.githubusercontent.com/fede2cr/alfresco-ubuntu-install/master/scripts/alfresco-service.sh
 
