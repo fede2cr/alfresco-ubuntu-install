@@ -887,6 +887,6 @@ sudo chown -R alfresco:alfresco /opt/alfresco/alf_data/solr6/
 sudo mkdir -p -m 2755 /opt/alfresco/logs/solr6
 sudo cp -r /opt/alfresco/solr6/solrhome /opt/alfresco/alf_data/solr6
 sudo chown alfresco:alfresco /opt/alfresco/logs/solr6
-sudo nohup /opt/alfresco/alfresco-service.sh servicestart
+sudo -u alfresco nohup /opt/alfresco/alfresco-service.sh servicestart
 sudo -u alfresco /opt/alfresco/solr6/solr/bin/solr start
 
