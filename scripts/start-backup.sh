@@ -6,19 +6,20 @@ then
 fi
 
 # Crea archivo de cron
-cat << EOF | sudo tee /etc/cron.d/pg_dump
+cat << EOF | sudo tee /etc/cron.d/alfresco_backup
 
 SHELL=/usr/bin/bash
-# HP Data protector corre a las 10am, 1pm, 3pm y 10pm.
-# Nosotros, 10 minutos antes. pg_dump solo dura ~5s.
+# HP Data protector respalda estos datos
+# Se deben copiar de forma manual hacia el equipo destino
 
-50 9,12,15,20 * * * postgres /usr/bin/pg_dump -Fc -U postgres alfresco -f /mnt/e/alfresco_pgsql/respaldo-bd-\$(date +\%F-\%s).sql.gz 2>&1 > /dev/null
+# Realizamos respaldo de alfresco y trazas 
+50 20 * * * postgres /usr/bin/pg_dump -Fc -U postgres alfresco -f /mnt/e/alfresco_pgsql/respaldo-bd-\$(date +\%F-\%s).sql.gz 2>&1 > /dev/null
+50 20 * * * postgres /usr/bin/pg_dump -Fc -U postgres trazas -f /mnt/e/alfresco_pgsql/respaldo-trazas-\$(date +\%F-\%s).sql.gz 2>&1 > /dev/null
 
+# Realizamos tar para no perder permisos por WSL
+0 20 * * * root tar cJf /mnt/e/alfresco-backup-\$(date +\%F-\%s).tar.xz /opt/alfresco/
 
 # Limpiamos respaldos todos los días
-30 9 * * * postgres /usr/bin/rm /mnt/e/alfresco_pgsql/*.sql.gz
-
-# Copiamos config de Alfresco una vez por día
-0 9 * * * root cp /opt/alfresco/tomcat/shared/classes/alfresco-global.properties /mnt/e/alfresco_pgsql/
+30 19 * * * postgres /usr/bin/rm /mnt/e/alfresco_pgsql/*.sql.gz
 
 EOF
