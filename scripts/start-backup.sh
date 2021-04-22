@@ -5,6 +5,7 @@ backupdir = /mnt/e/alfresco-backup
 if [ ! -d $backupdir ]
 then
     sudo mkdir -p $backupdir
+    sudo setfacl -m u:postgres:rwX /mnt/e/alfresco-backup
 fi
 
 # Crea archivo de cron
